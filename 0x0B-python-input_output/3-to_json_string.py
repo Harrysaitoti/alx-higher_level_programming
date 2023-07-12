@@ -1,18 +1,11 @@
 #!/usr/bin/python3
-to_json_string = __import__('3-to_json_string').to_json_string
+"""to_json_string module.
 
-my_list = [1, 2, 3]
-s_my_list = to_json_string(my_list)
-print(s_my_list)
-print(type(s_my_list))
+Contains a function that returns the JSON representation of an object.
+"""
+import json
 
-my_dict = { 
-    'id': 12,
-    'name': "John",
-    'places': [ "San Francisco", "Tokyo" ],
-    'is_active': True,
-    'info': {
-        'age': 36,
-        'average': 3.14
-    }
-}
+
+def to_json_string(my_obj):
+    """Returns the JSON representation of an object (string)."""
+    return json.dumps(my_obj)

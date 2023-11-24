@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """
-Prints the first State object from the database hbtn_0e_6_usa
+Adds the State object “Louisiana” to the database hbtn_0e_6_usa
 """
+
 
 if __name__ == "__main__":
     from sqlalchemy.orm import sessionmaker
@@ -20,10 +21,12 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
+    new_row = State(name='Louisiana')
+    session.add(new_row)
+    session.commit()
 
-    if (state is None):
-        print('Nothing')
-    else:
-        print('{:d}: {:s}'.format(state.id, state.name))
+    states = session.query(State).where(State.name == 'Louisiana')
+
+    for row in states:
+        print(row.id)
     session.close()
